@@ -49,10 +49,12 @@ console.log(order);
 5. write a function named "createTeaMaker" that returns another function, the returned function should rake one parameter, "teaType" and return a message like "making green tea".
 store the returned function in a variable named "teaMaker" and call it with "green tea"
 */
-function createTeaMaker() {
+function createTeaMaker(name) {
+  console.log(name);
+
   return function (teaType) {
     return `Making ${teaType}`;
   };
 }
-let teaMaker = createTeaMaker();
+let teaMaker = createTeaMaker("rohan");
 console.log(teaMaker("green tea"));
