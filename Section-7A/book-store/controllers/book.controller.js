@@ -1,4 +1,5 @@
-const booksTable = require("../modals/book.modal");
+const { booksTable } = require("../modals/book.modal");
+const { authorTable } = require("../modals/author.modal");
 const db = require("../db");
 const { eq } = require("drizzle-orm");
 const { sql } = require("drizzle-orm");
@@ -28,6 +29,7 @@ exports.getBookById = async function (req, res) {
     .select() // .select give result in form of array so we are destructuring it
     .from(booksTable)
     .where((table) => eq(table.id, id))
+    .leftJoin(authorTable, eq(booksTable.authorId, authorTable.id))
     .limit(1);
 
   if (!book) {

@@ -9,4 +9,6 @@ router.get("/:id", controller.getAuthorById);
 
 router.post("/", controller.createAuthor);
 
+router.get("/:id/books", controller.getAllBookByAuthor);
+
 module.exports = router;

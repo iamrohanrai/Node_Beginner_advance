@@ -1,4 +1,5 @@
 const { authorTable } = require("../modals/author.modal");
+const { booksTable } = require("../modals/book.modal");
 const db = require("../db");
 const { eq } = require("drizzle-orm");
 
@@ -33,4 +34,13 @@ exports.createAuthor = async function (req, res) {
     })
     .returning({ id: authorTable.id });
   return res.json({ message: `Author has been created`, id: result.id });
+};
+
+exports.getAllBookByAuthor = async function (req, res) {
+  const books = await db
+    .select()
+    .from(booksTable)
+    .where(eq(booksTable.authorId, req.params.id));
+
+  return res.json(books);
 };
